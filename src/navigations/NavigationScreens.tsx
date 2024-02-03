@@ -8,8 +8,10 @@ import Home from "../screens/frontend/Home";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from "../screens/frontend/Profile";
 import CreatePost from "../screens/frontend/CreatePost";
+import { Image } from "react-native";
+import Images from "../constants/Images";
 
-
+import {navStyles} from './NavigationStyle'
 
 export const AUTH_STACK_NAVIGATION_SCREENS=[
 {name:AUTH_STACK_SCREEN.LOGIN  , component:Login},
@@ -29,12 +31,35 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarStyle: { paddingTop:10 },
+      tabBarIcon: ({ focused }) => {
+        let iconName;
+
+        if (route.name === 'Home') {
+          iconName = Images.home
+        } else if (route.name === 'CreatePost') {
+          iconName = Images.plus
+        }
+        else{
+          iconName = Images.profile
+        }
+        return <Image source={iconName}/>;
+      },
+    })}
+    >
       <Tab.Screen name="Home" component={Home} 
-       options={{ headerShadowVisible: false, title: '' }}
+       options={{ headerShadowVisible: false, title: '', headerTitle: ()=><Image source={Images.smallTextLogo}/> , headerTitleAlign: 'center', }}
       />
-      <Tab.Screen name="CreatePost" component={CreatePost} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="CreatePost" component={CreatePost} 
+      options={{ headerShadowVisible: false, title: ''  ,}}
+      
+      />
+      <Tab.Screen name="Profile" component={Profile}
+      options={{ headerShadowVisible: false, title:"", headerTitle: 'jacob_w',  headerTitleAlign: 'center', headerTitleStyle: navStyles.titleStyle, }}
+      />
+
     </Tab.Navigator>
   );
 }

@@ -47,12 +47,13 @@ export default function AuthContextProvider(props: { children: React.ReactNode }
         const userData: UserProfileData | undefined = documentSnapshot.data() as UserProfileData;
         dispatch({ type: "Login", payload: { userData } });
       });
-
-    setIsAppLoading(false);
+    setTimeout(() => {
+      setIsAppLoading(false);
+    }, 2000)
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, isAppLoading }}>
       {props.children}
     </AuthContext.Provider>
   );

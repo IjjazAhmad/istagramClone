@@ -16,12 +16,6 @@ export default function Navigation() {
         <Stack.Navigator>
             {isAuth ?
                 <Stack.Group>
-
-                    {/* <Stack.Screen
-                        name="Home"
-                        component={Home}
-
-                    /> */}
                     {
                     STACK_NAVIGATION_SCREENS.map((item, index) => {
                         return (<Stack.Screen
