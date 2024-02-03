@@ -40,8 +40,8 @@ const authstyles = StyleSheet.create({
         marginHorizontal: 20,
     },
     textLogo: {
-        width: 182,
-        height: 49,
+        width: "90%",
+        height: 52,
         marginVertical: 50,
     },
     line: {
